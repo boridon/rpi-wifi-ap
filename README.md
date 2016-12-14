@@ -3,7 +3,7 @@
 USB Wifiアダプタを２つ挿してアクセスポイントを作ります
 
 Raspbian jessie lite(2015-11-21 kernel 4.1.13)  
-GW-900D (IEEE802.11n 5GHz、※設定がうまくいかず、IEEE802.11acで動作させられませんでした)  
+GW-900D (IEEE802.11n 5GHz)  
 GW-USEco300 (IEEE802.11n 2.4GHz)  
 hostapd (アクセスポイントのソフトウェア)  
 
@@ -50,37 +50,30 @@ hostapd (アクセスポイントのソフトウェア)
 rtl8812au チップのドライバーをビルドして使用します  
 いくつかRaspberry Pi用に設定を変えてビルドします
 
-	git clone --depth 1 https://github.com/abperiasamy/rtl8812AU_8821AU_linux.git
-	cd rtl8812AU_8821AU_linux
+	git clone --depth 1 https://github.com/diederikdehaas/rtl8812AU.git -b driver-4.3.22-beta
+	cd rtl8812AU
 
 ### Makefile を修正します ##
 
-	diff --git Makefile Makefile
-	index 0b4561c..e0e78f0 100644
-	--- Makefile
-	+++ Makefile
-	@@ -49,13 +49,13 @@ CONFIG_EXT_CLK = n
-	 CONFIG_FTP_PROTECT = n
-	 CONFIG_WOWLAN = n
-
-	-CONFIG_PLATFORM_I386_PC = y
-	+CONFIG_PLATFORM_I386_PC = n
-	 CONFIG_PLATFORM_ANDROID_X86 = n
-	 CONFIG_PLATFORM_JB_X86 = n
-	 CONFIG_PLATFORM_ARM_S3C2K4 = n
-	 CONFIG_PLATFORM_ARM_PXA2XX = n
-	 CONFIG_PLATFORM_ARM_S3C6K4 = n
-	-CONFIG_PLATFORM_ARM_RPI = n
-	+CONFIG_PLATFORM_ARM_RPI = y
-	 CONFIG_PLATFORM_MIPS_RMI = n
-	 CONFIG_PLATFORM_RTD2880B = n
-	 CONFIG_PLATFORM_MIPS_AR9132 = n
+    --- a/Makefile
+    +++ b/Makefile
+    @@ -85,8 +85,8 @@
+    ######### Notify SDIO Host Keep Power During Syspend ##########
+    CONFIG_RTW_SDIO_PM_KEEP_POWER = y
+    ###################### Platform Related #######################
+    -CONFIG_PLATFORM_I386_PC = y
+    -CONFIG_PLATFORM_ARM_RPI = n
+    +CONFIG_PLATFORM_I386_PC = n
+    +CONFIG_PLATFORM_ARM_RPI = y
+    CONFIG_PLATFORM_ANDROID_X86 = n
+    CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
+    CONFIG_PLATFORM_JB_X86 = n
 
 ### パッチ ##
 
 上記のdiffを保存してパッチ実行する場合 (diff.patch)
 
-	patch -p0 < diff.patch
+	patch -p1 < diff.patch
 
 ### ビルド＆インストール ###
 
