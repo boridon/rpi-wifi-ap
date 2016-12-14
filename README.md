@@ -176,7 +176,7 @@ ssid、wpa_passphrase の箇所は任意に書き換えます
 	ieee80211d=1
 	ieee80211h=1
 	hw_mode=a
-	channel=40
+	channel=153
 	beacon_int=100
 	dtim_period=2
 	max_num_sta=255
@@ -208,6 +208,8 @@ ssid、wpa_passphrase の箇所は任意に書き換えます
 	wmm_ac_vo_acm=0
 	ieee80211n=1
 	ieee80211ac=1
+	vht_oper_chwidth=1
+	vht_oper_centr_freq_seg0_idx=159
 	eapol_key_index_workaround=0
 	eap_server=0
 	own_ip_addr=127.0.0.1
