@@ -3,7 +3,7 @@
 USB Wifiアダプタを２つ挿してアクセスポイントを作ります
 
 Raspbian jessie lite(2015-11-21 kernel 4.1.13)  
-GW-900D (IEEE802.11n 5GHz)  
+GW-900D (IEEE802.11ac 5GHz)  
 GW-USEco300 (IEEE802.11n 2.4GHz)  
 hostapd (アクセスポイントのソフトウェア)  
 
