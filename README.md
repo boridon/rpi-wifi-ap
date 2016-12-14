@@ -55,20 +55,20 @@ rtl8812au チップのドライバーをビルドして使用します
 
 ### Makefile を修正します ##
 
-    diff -u a/Makefile b/Makefile
-    --- a/Makefile
-    +++ b/Makefile
-    @@ -85,8 +85,8 @@
-    ######### Notify SDIO Host Keep Power During Syspend ##########
-    CONFIG_RTW_SDIO_PM_KEEP_POWER = y
-    ###################### Platform Related #######################
-    -CONFIG_PLATFORM_I386_PC = y
-    -CONFIG_PLATFORM_ARM_RPI = n
-    +CONFIG_PLATFORM_I386_PC = n
-    +CONFIG_PLATFORM_ARM_RPI = y
-    CONFIG_PLATFORM_ANDROID_X86 = n
-    CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
-    CONFIG_PLATFORM_JB_X86 = n
+	diff -u a/Makefile b/Makefile
+	--- a/Makefile
+	+++ b/Makefile
+	@@ -85,8 +85,8 @@
+	######### Notify SDIO Host Keep Power During Syspend ##########
+	CONFIG_RTW_SDIO_PM_KEEP_POWER = y
+	###################### Platform Related #######################
+	-CONFIG_PLATFORM_I386_PC = y
+	-CONFIG_PLATFORM_ARM_RPI = n
+	+CONFIG_PLATFORM_I386_PC = n
+	+CONFIG_PLATFORM_ARM_RPI = y
+	CONFIG_PLATFORM_ANDROID_X86 = n
+	CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
+	CONFIG_PLATFORM_JB_X86 = n
 
 ### パッチ ##
 
@@ -207,6 +207,7 @@ ssid、wpa_passphrase の箇所は任意に書き換えます
 	wmm_ac_vo_txop_limit=47
 	wmm_ac_vo_acm=0
 	ieee80211n=1
+	ieee80211ac=1
 	eapol_key_index_workaround=0
 	eap_server=0
 	own_ip_addr=127.0.0.1
@@ -215,6 +216,7 @@ ssid、wpa_passphrase の箇所は任意に書き換えます
 	wpa_key_mgmt=WPA-PSK WPA-PSK-SHA256
 	wpa_pairwise=CCMP
 	rsn_pairwise=CCMP
+	
 
 ### /etc/hostapd/hostapd-wlan1.conf ###
 
