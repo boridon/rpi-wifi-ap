@@ -55,6 +55,7 @@ rtl8812au チップのドライバーをビルドして使用します
 
 ### Makefile を修正します ##
 
+    diff -u a/Makefile b/Makefile
     --- a/Makefile
     +++ b/Makefile
     @@ -85,8 +85,8 @@
